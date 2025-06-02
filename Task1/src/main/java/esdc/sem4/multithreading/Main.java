@@ -1,16 +1,16 @@
 package esdc.sem4.multithreading;
 
-import Task2.T1Thread;
-import Task2.ThreadRunnable;
-import Task4.ThreadWithText;
-import Task5.Thread5;
-import Task6.MaxPriorityThread;
-import Task6.MinPriorityThread;
-import Task7.WithYield;
-import Task7.WithoutYield;
-import Task8.CThread;
-import Task8.PThread;
-import Task8.Resourse;
+import esdc.sem4.multithreading.Task2.T1Thread;
+import esdc.sem4.multithreading.Task2.ThreadRunnable;
+import esdc.sem4.multithreading.Task4.ThreadWithText;
+import esdc.sem4.multithreading.Task5.Thread5;
+import esdc.sem4.multithreading.Task6.MaxPriorityThread;
+import esdc.sem4.multithreading.Task6.MinPriorityThread;
+import esdc.sem4.multithreading.Task7.WithYield;
+import esdc.sem4.multithreading.Task7.WithoutYield;
+import esdc.sem4.multithreading.Task8.CThread;
+import esdc.sem4.multithreading.Task8.PThread;
+import esdc.sem4.multithreading.Task8.Resourse;
 
 import java.util.Scanner;
 
