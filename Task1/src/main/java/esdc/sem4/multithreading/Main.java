@@ -5,8 +5,7 @@ import esdc.sem4.multithreading.Task2.Task2;
 import esdc.sem4.multithreading.Task3.Task3;
 import esdc.sem4.multithreading.Task4.Task4;
 import esdc.sem4.multithreading.Task5.Task5;
-import esdc.sem4.multithreading.Task6.MaxPriorityThread;
-import esdc.sem4.multithreading.Task6.MinPriorityThread;
+import esdc.sem4.multithreading.Task6.Task6;
 import esdc.sem4.multithreading.Task7.WithYield;
 import esdc.sem4.multithreading.Task7.WithoutYield;
 import esdc.sem4.multithreading.Task8.CThread;
@@ -45,22 +44,8 @@ public class Main {
                 Task5.runTask(scanner);
                 break;
             case 6:
-                long startTimeMinThread = System.nanoTime();
-                Thread minPrior = new MinPriorityThread(startTimeMinThread);
-                minPrior.setPriority(Thread.MIN_PRIORITY);
-
-                long startTimeMaxThread = System.nanoTime();
-                Thread maxPrior = new MaxPriorityThread(startTimeMaxThread);
-                maxPrior.setPriority(Thread.MAX_PRIORITY);
-
-                minPrior.start();
-                maxPrior.start();
-
-                maxPrior.join();
-                minPrior.join();
-
-
-                System.out.println("Поток с минимальным приоритетом завершается позже, потому что уступает потоку с максимальным приоритетом");
+                Taskable Task6 = new Task6();
+                Task6.runTask(scanner);
                 break;
             case 7:
                 long startTime = System.nanoTime();
