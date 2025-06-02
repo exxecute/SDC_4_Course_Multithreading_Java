@@ -26,7 +26,7 @@ public class TaskManager {
         this.tasksList.add(new Task6());
         this.tasksList.add(new Task7());
         this.tasksList.add(new Task8());
-        }
+    }
 
     public Taskable getTask(int taskNumber) {
         int taskId = taskNumber - 1;
