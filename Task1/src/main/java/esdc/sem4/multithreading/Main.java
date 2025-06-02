@@ -4,7 +4,7 @@ import esdc.sem4.multithreading.Task1.Task1;
 import esdc.sem4.multithreading.Task2.Task2;
 import esdc.sem4.multithreading.Task3.Task3;
 import esdc.sem4.multithreading.Task4.Task4;
-import esdc.sem4.multithreading.Task5.Thread5;
+import esdc.sem4.multithreading.Task5.Task5;
 import esdc.sem4.multithreading.Task6.MaxPriorityThread;
 import esdc.sem4.multithreading.Task6.MinPriorityThread;
 import esdc.sem4.multithreading.Task7.WithYield;
@@ -41,11 +41,8 @@ public class Main {
                 Task4.runTask(scanner);
                 break;
             case 5:
-                Thread thread = new Thread5("Sigma");
-                thread.start();
-                thread.interrupt();
-                // поток спит 10 секунд, в это время основной поток прерывает его
-                // поэтому возникает exception
+                Taskable Task5 = new Task5();
+                Task5.runTask(scanner);
                 break;
             case 6:
                 long startTimeMinThread = System.nanoTime();
