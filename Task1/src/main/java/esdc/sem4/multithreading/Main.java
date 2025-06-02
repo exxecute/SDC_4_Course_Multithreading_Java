@@ -1,5 +1,6 @@
 package esdc.sem4.multithreading;
 
+import esdc.sem4.multithreading.Task1.Task1;
 import esdc.sem4.multithreading.Task2.Task2;
 import esdc.sem4.multithreading.Task4.ThreadWithText;
 import esdc.sem4.multithreading.Task5.Thread5;
@@ -27,31 +28,27 @@ public class Main {
 
         switch (taskNumber){
             case 1:
-                System.out.println("Print N value: ");
-                n = scanner.nextInt();
-                for(int i = 0; i < n; i++){
-                    System.out.println(Thread.currentThread().getName() + textLine);
-                }
-                new Task1("childThread", n, textLine).start();
+                Taskable Task1 = new Task1();
+                Task1.runTask(scanner);
                 break;
             case 2:
                 Taskable Task2 = new Task2();
-                Task2.runTask();
+                Task2.runTask(scanner);
                 break;
             case 3:
                 // copy of task 1 with join()
-                System.out.println("Print N value: ");
-                n = scanner.nextInt();
-                Thread childThread = new Task1("childThread", n, textLine);
-                childThread.start();
-                try {
-                    childThread.join();
-                }catch (InterruptedException e){
-                    e.printStackTrace();
-                }
-                for(int i = 0; i < n; i++){
-                    System.out.println(Thread.currentThread().getName() + textLine);
-                }
+//                System.out.println("Print N value: ");
+//                n = scanner.nextInt();
+//                Thread childThread = new T1Thread("childThread", n, textLine); TODO: fix
+//                childThread.start();
+//                try {
+//                    childThread.join();
+//                }catch (InterruptedException e){
+//                    e.printStackTrace();
+//                }
+//                for(int i = 0; i < n; i++){
+//                    System.out.println(Thread.currentThread().getName() + textLine);
+//                }
                 break;
             case 4:
                 System.out.println("Print how many threads you want to run(4 <= n <= 6): ");
