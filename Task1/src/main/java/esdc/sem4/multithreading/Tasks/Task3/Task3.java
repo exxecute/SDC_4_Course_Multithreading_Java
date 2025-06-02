@@ -1,3 +1,9 @@
+/**
+ * Task3
+ * Метод join.
+ * Модифицировать программу так,
+ * чтобы вывод родительского потока задачи 1 производился после завершения порожденного.
+ */
 package esdc.sem4.multithreading.Tasks.Task3;
 
 import esdc.sem4.multithreading.Tasks.Task1.T1Thread;

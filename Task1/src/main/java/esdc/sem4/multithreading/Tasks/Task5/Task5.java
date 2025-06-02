@@ -1,3 +1,9 @@
+/**
+ * Task5
+ * InterruptedException.
+ * Создать ситуацию, чтобы возникло исключение InterruptedException.
+ * Объяснить причины его генерации.
+ */
 package esdc.sem4.multithreading.Tasks.Task5;
 
 import esdc.sem4.multithreading.Tasks.Taskable.Taskable;

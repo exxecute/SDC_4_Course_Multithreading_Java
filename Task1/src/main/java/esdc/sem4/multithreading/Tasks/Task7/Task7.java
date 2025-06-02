@@ -1,3 +1,8 @@
+/**
+ * Task7
+ * Метод yield.
+ * Оценить разницу скорости двух потоков, один из которых использует метод yield().
+ */
 package esdc.sem4.multithreading.Tasks.Task7;
 
 import esdc.sem4.multithreading.Tasks.Taskable.Taskable;

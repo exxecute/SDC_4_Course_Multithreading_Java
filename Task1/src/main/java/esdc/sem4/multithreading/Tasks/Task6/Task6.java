@@ -1,3 +1,13 @@
+/**
+ * Task6
+ * Priority.
+ * Оценить разницу скорости выполнения потоков с различными приоритетами. На примере:
+ * ```java
+ * Thread walkMin = new Thread(new WalkThread(), "Min"); Thread talkMax = new Thread(new TalkThread(), "Max"); walkMin.setPriority(Thread.MIN_PRIORITY); talkMax.setPriority(Thread.MAX_PRIORITY);
+ * talkMin.start();
+ * walkMax.start();
+ * ```
+ */
 package esdc.sem4.multithreading.Tasks.Task6;
 
 import esdc.sem4.multithreading.Tasks.Taskable.Taskable;

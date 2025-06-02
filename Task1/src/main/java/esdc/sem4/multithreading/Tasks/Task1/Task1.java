@@ -1,3 +1,9 @@
+/**
+ * Task1
+ * Создание потока.
+ * Написать программу, которая создает поток. Используйте атрибуты по-умолчанию.
+ * Родительский и вновь созданный потоки должны распечатать N строк текста.
+ */
 package esdc.sem4.multithreading.Tasks.Task1;
 
 import esdc.sem4.multithreading.Tasks.Taskable.Taskable;
