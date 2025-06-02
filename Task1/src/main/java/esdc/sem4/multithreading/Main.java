@@ -2,6 +2,7 @@ package esdc.sem4.multithreading;
 
 import esdc.sem4.multithreading.Task1.Task1;
 import esdc.sem4.multithreading.Task2.Task2;
+import esdc.sem4.multithreading.Task3.Task3;
 import esdc.sem4.multithreading.Task4.ThreadWithText;
 import esdc.sem4.multithreading.Task5.Thread5;
 import esdc.sem4.multithreading.Task6.MaxPriorityThread;
@@ -36,19 +37,8 @@ public class Main {
                 Task2.runTask(scanner);
                 break;
             case 3:
-                // copy of task 1 with join()
-//                System.out.println("Print N value: ");
-//                n = scanner.nextInt();
-//                Thread childThread = new T1Thread("childThread", n, textLine); TODO: fix
-//                childThread.start();
-//                try {
-//                    childThread.join();
-//                }catch (InterruptedException e){
-//                    e.printStackTrace();
-//                }
-//                for(int i = 0; i < n; i++){
-//                    System.out.println(Thread.currentThread().getName() + textLine);
-//                }
+                Taskable Task3 = new Task3();
+                Task3.runTask(scanner);
                 break;
             case 4:
                 System.out.println("Print how many threads you want to run(4 <= n <= 6): ");
