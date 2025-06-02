@@ -7,9 +7,7 @@ import esdc.sem4.multithreading.Task4.Task4;
 import esdc.sem4.multithreading.Task5.Task5;
 import esdc.sem4.multithreading.Task6.Task6;
 import esdc.sem4.multithreading.Task7.Task7;
-import esdc.sem4.multithreading.Task8.CThread;
-import esdc.sem4.multithreading.Task8.PThread;
-import esdc.sem4.multithreading.Task8.Resourse;
+import esdc.sem4.multithreading.Task8.Task8;
 import esdc.sem4.multithreading.Tasks.Taskable;
 
 import java.util.Scanner;
@@ -51,19 +49,8 @@ public class Main {
                 Task7.runTask(scanner);
                 break;
             case 8:
-                int m = 0;
-                int k = 0;
-                System.out.println("Print full time until end(ms): ");
-                k = scanner.nextInt();
-                System.out.println("Print pause time(ms): ");
-                m = scanner.nextInt();
-
-                Resourse resourse = new Resourse(k, true);
-
-                PThread p = new PThread(resourse, m);
-                Thread c = new CThread(resourse, m);
-                p.start();
-                c.start();
+                Taskable Task8 = new Task8();
+                Task8.runTask(scanner);
                 break;
             default:
                 System.out.println("POWEL NAHUI!");
