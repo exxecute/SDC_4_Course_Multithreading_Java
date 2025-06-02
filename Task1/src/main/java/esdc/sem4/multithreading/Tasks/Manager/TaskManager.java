@@ -30,7 +30,8 @@ public class TaskManager {
 
     public Taskable getTask(int taskNumber) {
         int taskId = taskNumber - 1;
-        if (this.tasksList.size() < taskId) {
+        boolean isIdValid = (0 <= taskId) && (this.tasksList.size() >= taskId);
+        if (!isIdValid) {
             throw new IndexOutOfBoundsException();
         }
         return this.tasksList.get(taskId);
