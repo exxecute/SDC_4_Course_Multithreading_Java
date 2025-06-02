@@ -1,4 +1,4 @@
-package esdc.sem4.multithreading.Task4;
+package esdc.sem4.multithreading.Tasks.Task4;
 
 public class ThreadWithText extends Thread {
     String text;
