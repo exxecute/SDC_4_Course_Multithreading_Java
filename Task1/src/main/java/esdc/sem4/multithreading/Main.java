@@ -1,7 +1,6 @@
 package esdc.sem4.multithreading;
 
-import esdc.sem4.multithreading.Task2.T1Thread;
-import esdc.sem4.multithreading.Task2.ThreadRunnable;
+import esdc.sem4.multithreading.Task2.Task2;
 import esdc.sem4.multithreading.Task4.ThreadWithText;
 import esdc.sem4.multithreading.Task5.Thread5;
 import esdc.sem4.multithreading.Task6.MaxPriorityThread;
@@ -11,6 +10,7 @@ import esdc.sem4.multithreading.Task7.WithoutYield;
 import esdc.sem4.multithreading.Task8.CThread;
 import esdc.sem4.multithreading.Task8.PThread;
 import esdc.sem4.multithreading.Task8.Resourse;
+import esdc.sem4.multithreading.Tasks.Taskable;
 
 import java.util.Scanner;
 
@@ -35,10 +35,8 @@ public class Main {
                 new Task1("childThread", n, textLine).start();
                 break;
             case 2:
-                new T1Thread("ExtendsThread", new ThreadRunnable()).start();
-                // тут выводится реализация того класса, который реализует Thread,
-                // потому что класс с интерфейсов перегружает метод в родительском классе,
-                // а класс который extends Thread перегружает этот метод заново
+                Taskable Task2 = new Task2();
+                Task2.runTask();
                 break;
             case 3:
                 // copy of task 1 with join()
