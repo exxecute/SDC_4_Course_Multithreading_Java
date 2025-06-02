@@ -6,8 +6,7 @@ import esdc.sem4.multithreading.Task3.Task3;
 import esdc.sem4.multithreading.Task4.Task4;
 import esdc.sem4.multithreading.Task5.Task5;
 import esdc.sem4.multithreading.Task6.Task6;
-import esdc.sem4.multithreading.Task7.WithYield;
-import esdc.sem4.multithreading.Task7.WithoutYield;
+import esdc.sem4.multithreading.Task7.Task7;
 import esdc.sem4.multithreading.Task8.CThread;
 import esdc.sem4.multithreading.Task8.PThread;
 import esdc.sem4.multithreading.Task8.Resourse;
@@ -48,18 +47,8 @@ public class Main {
                 Task6.runTask(scanner);
                 break;
             case 7:
-                long startTime = System.nanoTime();
-                Thread minThread = new WithYield(startTime);
-                Thread maxThread = new WithoutYield(startTime);
-
-                minThread.start();
-                maxThread.start();
-
-                minThread.join();
-                maxThread.join();
-
-                System.out.println("Поток, который вызывает yield() не всегда будет заканчиваться после потока," +
-                        " который не вызывает yield(), потому что не факт что он найдет поток равного приоритета и уступит ему");
+                Taskable Task7 = new Task7();
+                Task7.runTask(scanner);
                 break;
             case 8:
                 int m = 0;
