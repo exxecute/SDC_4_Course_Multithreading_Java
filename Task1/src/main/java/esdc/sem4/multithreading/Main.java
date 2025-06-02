@@ -3,7 +3,7 @@ package esdc.sem4.multithreading;
 import esdc.sem4.multithreading.Task1.Task1;
 import esdc.sem4.multithreading.Task2.Task2;
 import esdc.sem4.multithreading.Task3.Task3;
-import esdc.sem4.multithreading.Task4.ThreadWithText;
+import esdc.sem4.multithreading.Task4.Task4;
 import esdc.sem4.multithreading.Task5.Thread5;
 import esdc.sem4.multithreading.Task6.MaxPriorityThread;
 import esdc.sem4.multithreading.Task6.MinPriorityThread;
@@ -23,10 +23,6 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         taskNumber = scanner.nextInt();
 
-        String textLine = "That is one line of text";
-        int n = 0;
-        int stringFreq = 0;
-
         switch (taskNumber){
             case 1:
                 Taskable Task1 = new Task1();
@@ -41,22 +37,8 @@ public class Main {
                 Task3.runTask(scanner);
                 break;
             case 4:
-                System.out.println("Print how many threads you want to run(4 <= n <= 6): ");
-                stringFreq = scanner.nextInt();
-                System.out.println("Print N value: ");
-                n = scanner.nextInt();
-                scanner.nextLine();
-                for(int i = 0; i < stringFreq; i++) {
-                    System.out.println("Print string you want to be shown by threads: ");
-                    String textValue = scanner.nextLine();
-                    Thread th = new ThreadWithText("Thread " + i, textValue, n);
-                    th.start();
-                    try {
-                        th.join();
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
+                Taskable Task4 = new Task4();
+                Task4.runTask(scanner);
                 break;
             case 5:
                 Thread thread = new Thread5("Sigma");
