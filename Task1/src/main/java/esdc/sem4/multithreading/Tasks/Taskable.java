@@ -3,5 +3,5 @@ package esdc.sem4.multithreading.Tasks;
 import java.util.Scanner;
 
 public interface Taskable {
-    void runTask(Scanner scanner);
+    void runTask(Scanner scanner) throws InterruptedException;
 }
