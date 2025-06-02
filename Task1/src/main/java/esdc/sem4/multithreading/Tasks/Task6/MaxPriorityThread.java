@@ -1,4 +1,4 @@
-package esdc.sem4.multithreading.Task6;
+package esdc.sem4.multithreading.Tasks.Task6;
 
 public class MaxPriorityThread extends Thread {
     static String name = "MaxPriorityThread";

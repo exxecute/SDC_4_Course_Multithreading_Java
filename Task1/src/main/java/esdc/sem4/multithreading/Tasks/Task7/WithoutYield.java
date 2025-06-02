@@ -1,4 +1,4 @@
-package esdc.sem4.multithreading.Task7;
+package esdc.sem4.multithreading.Tasks.Task7;
 
 public class WithoutYield extends Thread {
     static String name = "WithoutYieldThread";

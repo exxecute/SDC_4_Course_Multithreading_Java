@@ -1,6 +1,6 @@
-package esdc.sem4.multithreading.Task8;
+package esdc.sem4.multithreading.Tasks.Task8;
 
-import esdc.sem4.multithreading.Tasks.Taskable;
+import esdc.sem4.multithreading.Tasks.Taskable.Taskable;
 
 import java.util.Scanner;
 

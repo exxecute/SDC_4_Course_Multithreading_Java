@@ -1,4 +1,4 @@
-package esdc.sem4.multithreading.Task2;
+package esdc.sem4.multithreading.Tasks.Task2;
 
 public class ThreadRunnable implements Runnable {
     public void run() {

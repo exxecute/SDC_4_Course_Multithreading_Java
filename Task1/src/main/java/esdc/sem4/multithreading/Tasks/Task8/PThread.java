@@ -1,4 +1,4 @@
-package esdc.sem4.multithreading.Task8;
+package esdc.sem4.multithreading.Tasks.Task8;
 
 public class PThread extends Thread {
     final Resourse resourse;

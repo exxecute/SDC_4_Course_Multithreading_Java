@@ -1,14 +1,14 @@
 package esdc.sem4.multithreading;
 
-import esdc.sem4.multithreading.Task1.Task1;
-import esdc.sem4.multithreading.Task2.Task2;
-import esdc.sem4.multithreading.Task3.Task3;
-import esdc.sem4.multithreading.Task4.Task4;
-import esdc.sem4.multithreading.Task5.Task5;
-import esdc.sem4.multithreading.Task6.Task6;
-import esdc.sem4.multithreading.Task7.Task7;
-import esdc.sem4.multithreading.Task8.Task8;
-import esdc.sem4.multithreading.Tasks.Taskable;
+import esdc.sem4.multithreading.Tasks.Task1.Task1;
+import esdc.sem4.multithreading.Tasks.Task2.Task2;
+import esdc.sem4.multithreading.Tasks.Task3.Task3;
+import esdc.sem4.multithreading.Tasks.Task4.Task4;
+import esdc.sem4.multithreading.Tasks.Task5.Task5;
+import esdc.sem4.multithreading.Tasks.Task6.Task6;
+import esdc.sem4.multithreading.Tasks.Task7.Task7;
+import esdc.sem4.multithreading.Tasks.Task8.Task8;
+import esdc.sem4.multithreading.Tasks.Taskable.Taskable;
 
 import java.util.Scanner;
 

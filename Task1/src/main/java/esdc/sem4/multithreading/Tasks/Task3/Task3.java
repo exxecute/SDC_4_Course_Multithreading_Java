@@ -1,7 +1,7 @@
-package esdc.sem4.multithreading.Task3;
+package esdc.sem4.multithreading.Tasks.Task3;
 
-import esdc.sem4.multithreading.Task1.T1Thread;
-import esdc.sem4.multithreading.Tasks.Taskable;
+import esdc.sem4.multithreading.Tasks.Task1.T1Thread;
+import esdc.sem4.multithreading.Tasks.Taskable.Taskable;
 
 import java.util.Scanner;
 

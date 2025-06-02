@@ -1,4 +1,4 @@
-package esdc.sem4.multithreading.Task1;
+package esdc.sem4.multithreading.Tasks.Task1;
 
 public class T1Thread extends Thread{
     private int n = 0;

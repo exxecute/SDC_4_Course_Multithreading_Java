@@ -1,4 +1,4 @@
-package esdc.sem4.multithreading.Task2;
+package esdc.sem4.multithreading.Tasks.Task2;
 
 public class T1Thread extends Thread {
     public T1Thread(String name, Runnable runnable) {
