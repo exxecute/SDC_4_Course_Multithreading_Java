@@ -61,10 +61,9 @@ public class CashRegister implements Callable<Void> {
     }
 
     private void serveTheCustomer() throws InterruptedException {
-        if (this.customerQueue.size() > 0) { // TODO: refactor
+        if (!this.customerQueue.isEmpty()) {
             Customer currentCustomer = this.chooseCustomer();
             int servingTime = (int)(Math.random() * MAX_SERVING_TIME);
-            // TODO: add logger that this cash register start serving and it will take n seconds
             System.out.println("Cash register " + this.getId() + " serving " + currentCustomer.getName() + " for " + servingTime + " seconds");
             TimeUnit.SECONDS.sleep(servingTime);
             currentCustomer.setIsServed(true);
