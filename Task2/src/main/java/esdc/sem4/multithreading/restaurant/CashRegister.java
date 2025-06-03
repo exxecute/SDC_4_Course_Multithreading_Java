@@ -57,7 +57,7 @@ public class CashRegister implements Callable<Void> {
     }
 
     public int getCustomersPlace(Customer customer) {
-        return this.customerQueue.indexOf(customer) + 1; // TODO: refactor +1
+        return this.customerQueue.indexOf(customer) + 1;
     }
 
     private void serveTheCustomer() throws InterruptedException {
@@ -73,7 +73,7 @@ public class CashRegister implements Callable<Void> {
 
     private Customer chooseCustomer() {
         for (Customer customer : this.customerQueue) {
-            if (customer.isPreOrder()) {
+            if (customer.getIsPreOrder()) {
                 this.customerQueue.remove(customer);
                 return customer;
             }
