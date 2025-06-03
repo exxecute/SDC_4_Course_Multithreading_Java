@@ -14,7 +14,7 @@ public class CustomerSwitchState extends CustomerState {
     @Override
     public void action() {
         Restaurant restaurant = Restaurant.getInstance();
-        int customerPlace = restaurant.getCashRegisters().get(customer.getCurrentCashRegisterId()).getCustomersPlace(customer); // TODO: refactor
+        int customerPlace = customer.getPlaceInTheQueue();
         if (customerPlace > 2) {
             CashRegister shortest = restaurant.getCashRegisters()
                     .stream()

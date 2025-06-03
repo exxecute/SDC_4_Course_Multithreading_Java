@@ -40,7 +40,7 @@ public class Customer implements Callable<Void> {
         return this.name;
     }
 
-    public boolean getIsPreOrder() { 
+    public boolean getIsPreOrder() {
         return this.isPreOrder;
     }
 
@@ -64,6 +64,10 @@ public class Customer implements Callable<Void> {
 
     public void setIsServed(boolean isServed) {
         this.isServed = isServed;
+    }
+
+    public int getPlaceInTheQueue() {
+        return Restaurant.getInstance().getCashRegisters().get(this.getCurrentCashRegisterId()).getCustomersPlace(this);
     }
 
     @Override

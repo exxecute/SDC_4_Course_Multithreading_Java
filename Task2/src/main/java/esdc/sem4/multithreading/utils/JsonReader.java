@@ -24,7 +24,7 @@ public class JsonReader {
         }
     }
 
-    public static List<Customer> loadCustomersFromJson() throws Exception { // TODO: refactor name
+    public static List<Customer> loadCustomersFromJson() throws Exception {
 
         ObjectMapper mapper = new ObjectMapper();
         List<Customer> customers = new ArrayList<>();
