@@ -1,5 +1,7 @@
 package esdc.sem4.multithreading.restaurant;
 
+import esdc.sem4.multithreading.customer.Customer;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,5 +27,10 @@ public final class Restaurant {
 
     public List<CashRegister> getCashRegisters() {
         return this.registers;
+    }
+
+    public void switchCustomerToCashRegister(Customer customer, int cashRegisterId) {
+        registers.get(customer.getCurrentCashRegisterId()).removeCustomer(customer);
+        registers.get(cashRegisterId).addCustomer(customer);
     }
 }
