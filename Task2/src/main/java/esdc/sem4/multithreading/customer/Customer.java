@@ -39,7 +39,7 @@ public class Customer implements Callable<Void> {
         return this.name;
     }
 
-    public boolean isPreOrder() {
+    public boolean isPreOrder() { // TODO: refactor name
         return this.isPreOrder;
     }
 
