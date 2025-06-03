@@ -1,4 +1,5 @@
 {
   "maxServingTimeSec": 5,
-  "numberOfCashRegisters": 2
+  "numberOfCashRegisters": 2,
+  "maxTimeForChoosingFoodSec": 5
 }

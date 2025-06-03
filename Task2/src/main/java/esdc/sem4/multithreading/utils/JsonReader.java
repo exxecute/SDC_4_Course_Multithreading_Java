@@ -57,4 +57,8 @@ public class JsonReader {
     public static int getNumberOfCashRegisters() {
         return configRoot.get("numberOfCashRegisters").asInt();
     }
+
+    public static int getMaxTimeForChoosingFoodSec() {
+        return configRoot.get("maxTimeForChoosingFoodSec").asInt();
+    }
 }
