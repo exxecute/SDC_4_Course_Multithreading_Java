@@ -25,6 +25,7 @@ public class CashRegister implements Callable<Void> {
                 " is serving: " + this.getIsServing());
         while(this.getIsServing()) {
             this.serveTheCustomer();
+            TimeUnit.MILLISECONDS.sleep(10);
         }
         System.out.println("Cash register " + this.getId() + " stop serving");
         return null;
@@ -60,10 +61,8 @@ public class CashRegister implements Callable<Void> {
     }
 
     private void serveTheCustomer() throws InterruptedException {
-        TimeUnit.MILLISECONDS.sleep(10);
         if (this.customerQueue.size() > 0) { // TODO: refactor
-            Customer currentCustomer = this.customerQueue.getFirst();
-            this.customerQueue.removeFirst();
+            Customer currentCustomer = this.chooseCustomer();
             int servingTime = (int)(Math.random() * MAX_SERVING_TIME);
             // TODO: add logger that this cash register start serving and it will take n seconds
             System.out.println("Cash register " + this.getId() + " serving " + currentCustomer.getName() + " for " + servingTime + " seconds");
@@ -72,5 +71,17 @@ public class CashRegister implements Callable<Void> {
             currentCustomer.setIsServed(true);
             System.out.println("Cash register " + this.getId() + " served " + currentCustomer.getName());
         }
+    }
+
+    private Customer chooseCustomer() {
+        for (Customer customer : this.customerQueue) {
+            if (customer.isPreOrder()) {
+                this.customerQueue.remove(customer);
+                return customer;
+            }
+        }
+        Customer firstCustomer = this.customerQueue.getFirst();
+        this.customerQueue.removeFirst();
+        return firstCustomer;
     }
 }
