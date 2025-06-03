@@ -21,7 +21,8 @@ public class CashRegister implements Callable<Void> {
 
     @Override
     public Void call() throws Exception {
-        System.out.println("Cash register " + this.getId() + " call");
+        System.out.println("Cash register " + this.getId() + " PID:" + Thread.currentThread().getId() +
+                " is serving: " + this.getIsServing());
         while(this.getIsServing()) {
             this.serveTheCustomer();
         }
@@ -40,6 +41,7 @@ public class CashRegister implements Callable<Void> {
     public void addCustomer(Customer customer) {
         System.out.println("Cash register " + this.getId() + " has new Customer " + customer.getName());
         this.customerQueue.add(customer);
+        System.out.println("Cash register " + this.getId() + " len: " + this.getQueueLength());
     }
 
     public void setIsServing(boolean isServing) {
@@ -59,15 +61,16 @@ public class CashRegister implements Callable<Void> {
     }
 
     private void serveTheCustomer() throws InterruptedException {
-        if (this.customerQueue.isEmpty()) {
-            return;
+        TimeUnit.MILLISECONDS.sleep(10);
+        if (this.customerQueue.size() > 0) {
+            Customer currentCustomer = this.customerQueue.getFirst();
+            this.customerQueue.removeFirst();
+            int servingTime = (int)(Math.random() * MAX_SERVING_TIME);
+            // TODO: add logger that this cash register start serving and it will take n seconds
+            System.out.println("Cash register " + this.getId() + " serving " + currentCustomer.getName() + " for " + servingTime + " seconds");
+            TimeUnit.SECONDS.sleep(servingTime);
+            currentCustomer.switchState(new CustomerServedState(currentCustomer));
+            System.out.println("Cash register " + this.getId() + " served " + currentCustomer.getName());
         }
-        Customer currentCustomer = this.customerQueue.getFirst();
-        this.customerQueue.removeFirst();
-        int servingTime = (int)(Math.random() * MAX_SERVING_TIME);
-        // TODO: add logger that this cash register start serving and it will take n seconds
-        System.out.println("Cash register " + this.getId() + " serving " + currentCustomer.getName() + " for " + servingTime + " seconds");
-        TimeUnit.SECONDS.sleep(servingTime);
-        currentCustomer.switchState(new CustomerServedState(currentCustomer));
     }
 }

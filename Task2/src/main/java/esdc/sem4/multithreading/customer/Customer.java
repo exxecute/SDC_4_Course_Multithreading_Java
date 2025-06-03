@@ -21,6 +21,7 @@ public class Customer implements Callable<Void> {
 
     @Override
     public Void call() throws Exception {
+        System.out.println("Customer " + this.getName() + " PID:" + Thread.currentThread().getId());
         while(state.getClass() != CustomerServedState.class) {
             state.action();
         }
@@ -28,7 +29,7 @@ public class Customer implements Callable<Void> {
     }
 
     public void switchState(CustomerState state) {
-        System.out.println("Customer switching state to " + state.getClass());
+//        System.out.println("Customer switching state to " + state.getClass());
         this.state = state;
     }
 
