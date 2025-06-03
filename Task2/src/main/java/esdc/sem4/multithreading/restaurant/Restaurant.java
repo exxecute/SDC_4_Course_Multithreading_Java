@@ -8,8 +8,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.locks.ReentrantLock;
 
 public final class Restaurant {
+    private static final ReentrantLock lock = new ReentrantLock();
     private static Restaurant instance;
     private final List<CashRegister> registers = new ArrayList<>();
     private final List<Customer> customers = new ArrayList<>();
@@ -24,10 +26,15 @@ public final class Restaurant {
     }
 
     public static Restaurant getInstance() {
-        if (instance == null) {
-            instance = new Restaurant();
+        lock.lock();
+        try {
+            if (instance == null) {
+                instance = new Restaurant();
+            }
+            return instance;
+        } finally {
+            lock.unlock();
         }
-        return instance;
     }
 
     public List<CashRegister> getCashRegisters() {
