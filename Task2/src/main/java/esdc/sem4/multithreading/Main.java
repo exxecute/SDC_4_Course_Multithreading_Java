@@ -16,6 +16,9 @@ public class Main {
         restaurant.addCustomer(customer1);
         restaurant.addCustomer(customer2);
         restaurant.addCustomer(customer3);
+        restaurant.addCustomer(customer4);
+        restaurant.addCustomer(customer5);
+        restaurant.addCustomer(customer6);
         restaurant.startServing();
     }
 }
