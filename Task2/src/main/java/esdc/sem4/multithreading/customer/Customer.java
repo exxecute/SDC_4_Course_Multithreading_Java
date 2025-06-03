@@ -1,5 +1,6 @@
 package esdc.sem4.multithreading.customer;
 
+import esdc.sem4.multithreading.customer.state.CustomerServedState;
 import esdc.sem4.multithreading.customer.state.CustomerState;
 import esdc.sem4.multithreading.restaurant.Restaurant;
 
@@ -20,7 +21,9 @@ public class Customer implements Callable<Void> {
 
     @Override
     public Void call() throws Exception {
-        state.action();
+        while(state.getClass() != CustomerServedState.class) {
+            state.action();
+        }
         return null;
     }
 
