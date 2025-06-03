@@ -16,7 +16,7 @@ public class CustomerComeState extends CustomerState {
 
     @Override
     public void action() throws InterruptedException {
-        int timeChoosingFoodS = (int)(Math.random() * MAX_TIME_FOR_CHOOSING_FOOD_S);
+        int timeChoosingFoodS = (int) (Math.random() * MAX_TIME_FOR_CHOOSING_FOOD_S);
         System.out.println("Customer " + customer.getName() + " is choosing food for " + timeChoosingFoodS + " Seconds");
         TimeUnit.SECONDS.sleep(timeChoosingFoodS);
         Restaurant restaurant = Restaurant.getInstance();

@@ -1,18 +1,19 @@
 package esdc.sem4.multithreading.restaurant;
 
 import esdc.sem4.multithreading.customer.Customer;
-import esdc.sem4.multithreading.customer.state.CustomerServedState;
 import esdc.sem4.multithreading.utils.JsonReader;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.locks.ReentrantLock;
 
 public class CashRegister implements Callable<Void> {
     private static final int MAX_SERVING_TIME = JsonReader.getMaxServingTimeSec();
     private final int id;
     private final List<Customer> customerQueue = new ArrayList<Customer>();
+    private final ReentrantLock lock = new ReentrantLock();
     private boolean isServing;
 
     public CashRegister(int id) {
@@ -24,7 +25,7 @@ public class CashRegister implements Callable<Void> {
     public Void call() throws Exception {
         System.out.println("Cash register " + this.getId() + " PID:" + Thread.currentThread().getId() +
                 " is serving: " + this.getIsServing());
-        while(this.getIsServing()) {
+        while (this.getIsServing()) {
             this.serveTheCustomer();
             TimeUnit.MILLISECONDS.sleep(10);
         }
@@ -37,38 +38,66 @@ public class CashRegister implements Callable<Void> {
     }
 
     public int getQueueLength() {
-        return this.customerQueue.size();
+        lock.lock();
+        try {
+            return customerQueue.size();
+        } finally {
+            lock.unlock();
+        }
     }
 
     public void addCustomer(Customer customer) {
-        System.out.println("Cash register " + this.getId() + " has new Customer " + customer.getName());
-        this.customerQueue.add(customer);
-    }
-
-    public void setIsServing(boolean isServing) {
-        this.isServing = isServing;
-    }
-
-    public boolean getIsServing() {
-        return this.isServing;
+        lock.lock();
+        try {
+            System.out.println("Cash register " + id + " has new Customer " + customer.getName());
+            customerQueue.add(customer);
+        } finally {
+            lock.unlock();
+        }
     }
 
     public void removeCustomer(Customer customer) {
-        this.customerQueue.remove(customer);
+        lock.lock();
+        try {
+            customerQueue.remove(customer);
+        } finally {
+            lock.unlock();
+        }
     }
 
     public int getCustomersPlace(Customer customer) {
-        return this.customerQueue.indexOf(customer) + 1; // TODO: refactor +1
+        lock.lock();
+        try {
+            return customerQueue.indexOf(customer) + 1;
+        } finally {
+            lock.unlock();
+        }
+    }
+
+    public void setIsServing(boolean isServing) {
+        lock.lock();
+        try {
+            this.isServing = isServing;
+        } finally {
+            lock.unlock();
+        }
+    }
+
+    public boolean getIsServing() {
+        lock.lock();
+        try {
+            return isServing;
+        } finally {
+            lock.unlock();
+        }
     }
 
     private void serveTheCustomer() throws InterruptedException {
-        if (this.customerQueue.size() > 0) { // TODO: refactor
+        if (!this.customerQueue.isEmpty()) {
             Customer currentCustomer = this.chooseCustomer();
             int servingTime = (int)(Math.random() * MAX_SERVING_TIME);
-            // TODO: add logger that this cash register start serving and it will take n seconds
             System.out.println("Cash register " + this.getId() + " serving " + currentCustomer.getName() + " for " + servingTime + " seconds");
             TimeUnit.SECONDS.sleep(servingTime);
-            currentCustomer.switchState(new CustomerServedState(currentCustomer));
             currentCustomer.setIsServed(true);
             System.out.println("Cash register " + this.getId() + " served " + currentCustomer.getName());
         }
@@ -76,7 +105,7 @@ public class CashRegister implements Callable<Void> {
 
     private Customer chooseCustomer() {
         for (Customer customer : this.customerQueue) {
-            if (customer.isPreOrder()) {
+            if (customer.getIsPreOrder()) {
                 this.customerQueue.remove(customer);
                 return customer;
             }
