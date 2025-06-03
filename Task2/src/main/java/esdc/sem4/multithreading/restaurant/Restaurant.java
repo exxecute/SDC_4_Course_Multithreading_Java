@@ -2,6 +2,7 @@ package esdc.sem4.multithreading.restaurant;
 
 import esdc.sem4.multithreading.customer.Customer;
 import esdc.sem4.multithreading.customer.state.CustomerComeState;
+import esdc.sem4.multithreading.utils.JsonReader;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +16,7 @@ public final class Restaurant {
     private final ExecutorService executor = Executors.newCachedThreadPool();
 
     private Restaurant() {
-        int numberOfRegisters = 2; // TODO: load data from data loader
+        int numberOfRegisters = JsonReader.getNumberOfCashRegisters();
         for (int i = 0; i < numberOfRegisters; i++) {
             CashRegister register = new CashRegister(i);
             registers.add(register);

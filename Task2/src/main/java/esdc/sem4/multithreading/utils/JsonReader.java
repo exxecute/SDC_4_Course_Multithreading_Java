@@ -12,7 +12,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class JsonReader {
-    public static List<Customer> loadCustomersFromJson() throws Exception {
+    private static final JsonNode configRoot;
+
+    static {
+        try (InputStream is = JsonReader.class.getClassLoader().getResourceAsStream("config.json")) {
+            if (is == null) {
+                throw new RuntimeException("config.json not found in resources");
+            }
+            ObjectMapper mapper = new ObjectMapper();
+            configRoot = mapper.readTree(is);
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to load config.json", e);
+        }
+    }
+
+    public static List<Customer> loadCustomersFromJson() throws Exception { // TODO: refactor name
+
         ObjectMapper mapper = new ObjectMapper();
         List<Customer> customers = new ArrayList<>();
         InputStream inputStream = JsonReader.class.getClassLoader().getResourceAsStream("customers.json");
@@ -33,5 +48,13 @@ public class JsonReader {
             e.printStackTrace();
         }
         return customers;
+    }
+
+    public static int getMaxServingTimeSec() {
+        return configRoot.get("maxServingTimeSec").asInt();
+    }
+
+    public static int getNumberOfCashRegisters() {
+        return configRoot.get("numberOfCashRegisters").asInt();
     }
 }

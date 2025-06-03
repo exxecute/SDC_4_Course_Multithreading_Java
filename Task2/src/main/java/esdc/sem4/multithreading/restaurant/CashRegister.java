@@ -2,6 +2,7 @@ package esdc.sem4.multithreading.restaurant;
 
 import esdc.sem4.multithreading.customer.Customer;
 import esdc.sem4.multithreading.customer.state.CustomerServedState;
+import esdc.sem4.multithreading.utils.JsonReader;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,7 +10,7 @@ import java.util.concurrent.Callable;
 import java.util.concurrent.TimeUnit;
 
 public class CashRegister implements Callable<Void> {
-    private static final int MAX_SERVING_TIME = 5; // TODO: get data from data loader
+    private static final int MAX_SERVING_TIME = JsonReader.getMaxServingTimeSec();
     private final int id;
     private final List<Customer> customerQueue = new ArrayList<Customer>();
     private boolean isServing;
