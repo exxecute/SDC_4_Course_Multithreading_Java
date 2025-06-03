@@ -61,7 +61,7 @@ public class CashRegister implements Callable<Void> {
 
     private void serveTheCustomer() throws InterruptedException {
         TimeUnit.MILLISECONDS.sleep(10);
-        if (this.customerQueue.size() > 0) {
+        if (this.customerQueue.size() > 0) { // TODO: refactor
             Customer currentCustomer = this.customerQueue.getFirst();
             this.customerQueue.removeFirst();
             int servingTime = (int)(Math.random() * MAX_SERVING_TIME);
