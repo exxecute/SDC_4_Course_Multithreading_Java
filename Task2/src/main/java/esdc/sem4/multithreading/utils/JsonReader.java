@@ -21,7 +21,6 @@ public class JsonReader {
             throw new FileNotFoundException("customers.json not found in resources");
         }
         try {
-            // Предполагается, что файл называется customers.json
             JsonNode root = mapper.readTree(inputStream);
             for (JsonNode node : root) {
                 String name = node.get("name").asText();
