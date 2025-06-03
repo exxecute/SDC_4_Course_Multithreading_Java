@@ -5,6 +5,7 @@ import esdc.sem4.multithreading.customer.state.CustomerState;
 import esdc.sem4.multithreading.restaurant.Restaurant;
 
 import java.util.concurrent.Callable;
+import java.util.concurrent.TimeUnit;
 
 public class Customer implements Callable<Void> {
     private final String name;
@@ -26,7 +27,9 @@ public class Customer implements Callable<Void> {
         System.out.println("Customer " + this.getName() + " PID:" + Thread.currentThread().getId());
         while(!this.getIsServed()) {
             state.action();
+            TimeUnit.MILLISECONDS.sleep(10);
         }
+        System.out.println("Customer " + this.getName() + " had gone");
         return null;
     }
 

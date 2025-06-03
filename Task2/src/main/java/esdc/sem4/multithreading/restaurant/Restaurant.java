@@ -45,14 +45,25 @@ public final class Restaurant {
 
     public void startServing() {
         System.out.println("Customers are coming");
-        for(Customer customer : this.customers) {
+        for (Customer customer : this.customers) {
             customer.switchState(new CustomerComeState(customer));
             this.executor.submit(customer);
         }
         System.out.println("Start serving");
-        for(CashRegister cashRegister : this.registers) {
+        for (CashRegister cashRegister : this.registers) {
             cashRegister.setIsServing(true);
             this.executor.submit(cashRegister);
         }
+
+        while (!this.customers.isEmpty()) {
+            this.customers.removeIf(Customer::getIsServed);
+        }
+
+        System.out.println("All customers served, closing cash registers");
+        for (CashRegister cashRegister : this.registers) {
+            cashRegister.setIsServing(false);
+        }
+
+        executor.shutdown();
     }
 }
