@@ -10,6 +10,7 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) throws Exception {
         List<Customer> loadedCustomers = JsonReader.loadCustomersFromJson();
+        System.out.println("===== Loaded Customers =====");
         loadedCustomers.forEach(System.out::println);
     }
 }
