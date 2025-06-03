@@ -41,7 +41,6 @@ public class CashRegister implements Callable<Void> {
     public void addCustomer(Customer customer) {
         System.out.println("Cash register " + this.getId() + " has new Customer " + customer.getName());
         this.customerQueue.add(customer);
-        System.out.println("Cash register " + this.getId() + " len: " + this.getQueueLength());
     }
 
     public void setIsServing(boolean isServing) {
@@ -70,6 +69,7 @@ public class CashRegister implements Callable<Void> {
             System.out.println("Cash register " + this.getId() + " serving " + currentCustomer.getName() + " for " + servingTime + " seconds");
             TimeUnit.SECONDS.sleep(servingTime);
             currentCustomer.switchState(new CustomerServedState(currentCustomer));
+            currentCustomer.setIsServed(true);
             System.out.println("Cash register " + this.getId() + " served " + currentCustomer.getName());
         }
     }

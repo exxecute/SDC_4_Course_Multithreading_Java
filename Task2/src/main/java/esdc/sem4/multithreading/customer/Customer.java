@@ -12,17 +12,19 @@ public class Customer implements Callable<Void> {
     private CustomerState state;
     private final boolean isPreOrder;
     private int currentCashRegisterId;
+    private boolean isServed;
 
     public Customer(String name, boolean isPreOrder, int maxEndurance) {
         this.name = name;
         this.isPreOrder = isPreOrder;
         this.maxEndurance = maxEndurance;
+        this.isServed = false;
     }
 
     @Override
     public Void call() throws Exception {
         System.out.println("Customer " + this.getName() + " PID:" + Thread.currentThread().getId());
-        while(state.getClass() != CustomerServedState.class) {
+        while(!this.getIsServed()) {
             state.action();
         }
         return null;
@@ -57,5 +59,13 @@ public class Customer implements Callable<Void> {
 
     public int getCurrentCashRegisterId() {
         return this.currentCashRegisterId;
+    }
+
+    public boolean getIsServed() {
+        return this.isServed;
+    }
+
+    public void setIsServed(boolean isServed) {
+        this.isServed = isServed;
     }
 }

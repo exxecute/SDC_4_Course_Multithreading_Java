@@ -12,7 +12,7 @@ public class CustomerWaitState extends CustomerState {
     @Override
     public void action() throws InterruptedException {
         int customerEnduranceS = (int)(Math.random() * customer.getMaxEndurance());
-//        System.out.println("Customer " + customer.getName() + " waiting in queue for " + customerEnduranceS + " seconds");
+        System.out.println("Customer " + customer.getName() + " waiting in queue for " + customerEnduranceS + " seconds");
         TimeUnit.SECONDS.sleep(customerEnduranceS);
         customer.switchState(new CustomerSwitchState(customer));
     }
