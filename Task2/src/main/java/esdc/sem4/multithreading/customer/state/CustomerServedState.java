@@ -8,7 +8,5 @@ public class CustomerServedState extends CustomerState {
     }
 
     @Override
-    public void action() {
-        // TODO: nothing
-    }
+    public void action() {    }
 }

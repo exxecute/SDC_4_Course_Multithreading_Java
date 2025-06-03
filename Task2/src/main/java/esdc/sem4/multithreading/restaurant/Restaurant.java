@@ -13,8 +13,8 @@ public final class Restaurant {
         int numberOfRegisters = 2; // TODO: load data from data loader
         for (int i = 0; i < numberOfRegisters; i++) {
             CashRegister register = new CashRegister(i);
-//            register.serveCustomers();
             registers.add(register);
+            register.setIsServing(true);
         }
     }
 
