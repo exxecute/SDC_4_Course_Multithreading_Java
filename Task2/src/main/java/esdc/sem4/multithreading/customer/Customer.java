@@ -1,6 +1,5 @@
 package esdc.sem4.multithreading.customer;
 
-import esdc.sem4.multithreading.customer.state.CustomerServedState;
 import esdc.sem4.multithreading.customer.state.CustomerState;
 import esdc.sem4.multithreading.restaurant.Restaurant;
 
@@ -34,7 +33,6 @@ public class Customer implements Callable<Void> {
     }
 
     public void switchState(CustomerState state) {
-//        System.out.println("Customer switching state to " + state.getClass());
         this.state = state;
     }
 
@@ -44,10 +42,6 @@ public class Customer implements Callable<Void> {
 
     public boolean isPreOrder() { // TODO: refactor name
         return this.isPreOrder;
-    }
-
-    public long getPID() {
-        return 10; // TODO: get pid
     }
 
     public int getMaxEndurance() {
