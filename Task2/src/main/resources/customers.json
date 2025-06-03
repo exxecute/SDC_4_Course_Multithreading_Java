@@ -1,0 +1,8 @@
+[
+  { "name": "Bib", "preOrder": false, "maxEndurance": 10},
+  { "name": "Alice", "preOrder": false, "maxEndurance": 5},
+  { "name": "Gray", "preOrder": false, "maxEndurance": 12},
+  { "name": "Bob", "preOrder": true, "maxEndurance": 5},
+  { "name": "Day", "preOrder": false, "maxEndurance": 7},
+  { "name": "Bay", "preOrder": false, "maxEndurance": 10}
+]
