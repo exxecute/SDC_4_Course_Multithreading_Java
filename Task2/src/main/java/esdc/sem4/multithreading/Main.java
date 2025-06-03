@@ -1,17 +1,24 @@
 package esdc.sem4.multithreading;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+
+import esdc.sem4.multithreading.customer.Customer;
+import esdc.sem4.multithreading.restaurant.Restaurant;
+
 public class Main {
     public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
-
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
-        }
+        Restaurant restaurant = Restaurant.getInstance();
+        Customer customer1 = new Customer("Bib", false, 5);
+        Customer customer2 = new Customer("Alice", false, 5);
+        Customer customer3 = new Customer("Gray", false, 5);
+        Customer customer4 = new Customer("Bob", false, 5);
+        Customer customer5 = new Customer("Day", false, 5);
+        Customer customer6 = new Customer("Bay", false, 5);
+        restaurant.addCustomer(customer1);
+        restaurant.addCustomer(customer2);
+        restaurant.addCustomer(customer3);
+        restaurant.addCustomer(customer4);
+        restaurant.addCustomer(customer5);
+        restaurant.addCustomer(customer6);
+        restaurant.startServing();
     }
 }

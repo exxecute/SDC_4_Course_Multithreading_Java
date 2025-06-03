@@ -1,5 +1,6 @@
 package esdc.sem4.multithreading.customer;
 
+import esdc.sem4.multithreading.customer.state.CustomerServedState;
 import esdc.sem4.multithreading.customer.state.CustomerState;
 import esdc.sem4.multithreading.restaurant.Restaurant;
 
@@ -11,20 +12,26 @@ public class Customer implements Callable<Void> {
     private CustomerState state;
     private final boolean isPreOrder;
     private int currentCashRegisterId;
+    private boolean isServed;
 
     public Customer(String name, boolean isPreOrder, int maxEndurance) {
         this.name = name;
         this.isPreOrder = isPreOrder;
         this.maxEndurance = maxEndurance;
+        this.isServed = false;
     }
 
     @Override
     public Void call() throws Exception {
-        state.action();
+        System.out.println("Customer " + this.getName() + " PID:" + Thread.currentThread().getId());
+        while(!this.getIsServed()) {
+            state.action();
+        }
         return null;
     }
 
     public void switchState(CustomerState state) {
+//        System.out.println("Customer switching state to " + state.getClass());
         this.state = state;
     }
 
@@ -52,5 +59,13 @@ public class Customer implements Callable<Void> {
 
     public int getCurrentCashRegisterId() {
         return this.currentCashRegisterId;
+    }
+
+    public boolean getIsServed() {
+        return this.isServed;
+    }
+
+    public void setIsServed(boolean isServed) {
+        this.isServed = isServed;
     }
 }
