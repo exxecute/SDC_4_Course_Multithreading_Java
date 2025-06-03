@@ -5,12 +5,14 @@ import esdc.sem4.multithreading.restaurant.Restaurant;
 
 import java.util.concurrent.Callable;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.locks.ReentrantLock;
 
 public class Customer implements Callable<Void> {
     private final String name;
     private final int maxEndurance;
-    private CustomerState state;
     private final boolean isPreOrder;
+    private final ReentrantLock lock = new ReentrantLock();
+    private CustomerState state;
     private int currentCashRegisterId;
     private boolean isServed;
 
@@ -32,8 +34,13 @@ public class Customer implements Callable<Void> {
         return null;
     }
 
-    public void switchState(CustomerState state) {
-        this.state = state;
+    public void switchState(CustomerState newState) {
+        lock.lock();
+        try {
+            this.state = newState;
+        } finally {
+            lock.unlock();
+        }
     }
 
     public String getName() {
@@ -50,24 +57,46 @@ public class Customer implements Callable<Void> {
 
     public void switchCashRegister(int id) {
         Restaurant.getInstance().switchCustomerToCashRegister(this, id);
-        this.currentCashRegisterId = id;
-
+        lock.lock();
+        try {
+            this.currentCashRegisterId = id;
+        } finally {
+            lock.unlock();
+        }
     }
 
     public int getCurrentCashRegisterId() {
-        return this.currentCashRegisterId;
+        lock.lock();
+        try {
+            return this.currentCashRegisterId;
+        } finally {
+            lock.unlock();
+        }
     }
 
     public boolean getIsServed() {
-        return this.isServed;
+        lock.lock();
+        try {
+            return this.isServed;
+        } finally {
+            lock.unlock();
+        }
     }
 
     public void setIsServed(boolean isServed) {
-        this.isServed = isServed;
+        lock.lock();
+        try {
+            this.isServed = isServed;
+        } finally {
+            lock.unlock();
+        }
     }
 
     public int getPlaceInTheQueue() {
-        return Restaurant.getInstance().getCashRegisters().get(this.getCurrentCashRegisterId()).getCustomersPlace(this);
+        return Restaurant.getInstance()
+                .getCashRegisters()
+                .get(getCurrentCashRegisterId())
+                .getCustomersPlace(this);
     }
 
     @Override
