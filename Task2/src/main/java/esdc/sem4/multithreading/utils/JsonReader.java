@@ -6,6 +6,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import esdc.sem4.multithreading.customer.Customer;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,10 +15,14 @@ public class JsonReader {
     public static List<Customer> loadCustomersFromJson() throws Exception {
         ObjectMapper mapper = new ObjectMapper();
         List<Customer> customers = new ArrayList<>();
+        InputStream inputStream = JsonReader.class.getClassLoader().getResourceAsStream("customers.json");
 
+        if (inputStream == null) {
+            throw new FileNotFoundException("customers.json not found in resources");
+        }
         try {
             // Предполагается, что файл называется customers.json
-            JsonNode root = mapper.readTree(new File("resources/customers.json"));
+            JsonNode root = mapper.readTree(inputStream);
             for (JsonNode node : root) {
                 String name = node.get("name").asText();
                 boolean preOrder = node.get("preOrder").asBoolean();
