@@ -16,7 +16,7 @@ public class JsonReader {
 
         try {
             // Предполагается, что файл называется customers.json
-            JsonNode root = mapper.readTree(new File("/home/execute/Study/SDC_4_Course_Multithreading_Java/Task2/src/main/java/esdc/sem4/multithreading/resources/customers.json"));
+            JsonNode root = mapper.readTree(new File("resources/customers.json"));
             for (JsonNode node : root) {
                 String name = node.get("name").asText();
                 boolean preOrder = node.get("preOrder").asBoolean();
