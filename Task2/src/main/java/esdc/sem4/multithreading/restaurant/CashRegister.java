@@ -1,7 +1,6 @@
 package esdc.sem4.multithreading.restaurant;
 
 import esdc.sem4.multithreading.customer.Customer;
-import esdc.sem4.multithreading.customer.state.CustomerServedState;
 import esdc.sem4.multithreading.utils.JsonReader;
 
 import java.util.ArrayList;
@@ -68,7 +67,6 @@ public class CashRegister implements Callable<Void> {
             // TODO: add logger that this cash register start serving and it will take n seconds
             System.out.println("Cash register " + this.getId() + " serving " + currentCustomer.getName() + " for " + servingTime + " seconds");
             TimeUnit.SECONDS.sleep(servingTime);
-            currentCustomer.switchState(new CustomerServedState(currentCustomer));
             currentCustomer.setIsServed(true);
             System.out.println("Cash register " + this.getId() + " served " + currentCustomer.getName());
         }
