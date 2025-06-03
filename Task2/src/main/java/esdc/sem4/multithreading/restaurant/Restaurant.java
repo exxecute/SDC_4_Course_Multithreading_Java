@@ -10,7 +10,7 @@ public final class Restaurant {
     private Restaurant() {
         int numberOfRegisters = 2; // TODO: load data from data loader
         for (int i = 0; i < numberOfRegisters; i++) {
-            CashRegister register = new CashRegister();
+            CashRegister register = new CashRegister(i);
 //            register.serveCustomers();
             registers.add(register);
         }
