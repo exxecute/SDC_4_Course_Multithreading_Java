@@ -21,9 +21,11 @@ public class CashRegister implements Callable<Void> {
 
     @Override
     public Void call() throws Exception {
+        System.out.println("Cash register " + this.getId() + " call");
         while(this.getIsServing()) {
             this.serveTheCustomer();
         }
+        System.out.println("Cash register " + this.getId() + " stop serving");
         return null;
     }
 
@@ -36,6 +38,7 @@ public class CashRegister implements Callable<Void> {
     }
 
     public void addCustomer(Customer customer) {
+        System.out.println("Cash register " + this.getId() + " has new Customer " + customer.getName());
         this.customerQueue.add(customer);
     }
 
@@ -56,10 +59,14 @@ public class CashRegister implements Callable<Void> {
     }
 
     private void serveTheCustomer() throws InterruptedException {
+        if (this.customerQueue.isEmpty()) {
+            return;
+        }
         Customer currentCustomer = this.customerQueue.getFirst();
         this.customerQueue.removeFirst();
         int servingTime = (int)(Math.random() * MAX_SERVING_TIME);
         // TODO: add logger that this cash register start serving and it will take n seconds
+        System.out.println("Cash register " + this.getId() + " serving " + currentCustomer.getName() + " for " + servingTime + " seconds");
         TimeUnit.SECONDS.sleep(servingTime);
         currentCustomer.switchState(new CustomerServedState(currentCustomer));
     }

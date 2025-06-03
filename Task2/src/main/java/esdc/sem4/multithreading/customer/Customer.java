@@ -28,6 +28,7 @@ public class Customer implements Callable<Void> {
     }
 
     public void switchState(CustomerState state) {
+        System.out.println("Customer switching state to " + state.getClass());
         this.state = state;
     }
 

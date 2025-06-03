@@ -19,7 +19,6 @@ public final class Restaurant {
         for (int i = 0; i < numberOfRegisters; i++) {
             CashRegister register = new CashRegister(i);
             registers.add(register);
-            register.setIsServing(true);
         }
     }
 
@@ -40,13 +39,20 @@ public final class Restaurant {
     }
 
     public void addCustomer(Customer customer) {
+        System.out.println("Add customer " + customer.getName());
         this.customers.add(customer);
     }
 
     public void startServing() {
+        System.out.println("Customers are coming");
         for(Customer customer : this.customers) {
             customer.switchState(new CustomerComeState(customer));
             this.executor.submit(customer);
+        }
+        System.out.println("Start serving");
+        for(CashRegister cashRegister : this.registers) {
+            cashRegister.setIsServing(true);
+            this.executor.submit(cashRegister);
         }
     }
 }
