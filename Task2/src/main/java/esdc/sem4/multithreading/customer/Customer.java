@@ -24,7 +24,7 @@ public class Customer implements Callable<Void> {
     @Override
     public Void call() throws Exception {
         System.out.println("Customer " + this.getName() + " PID:" + Thread.currentThread().getId());
-        while(!this.getIsServed()) {
+        while( !this.getIsServed()) {
             state.action();
             TimeUnit.MILLISECONDS.sleep(10);
         }

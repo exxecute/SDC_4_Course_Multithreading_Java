@@ -24,7 +24,7 @@ public class CashRegister implements Callable<Void> {
     public Void call() throws Exception {
         System.out.println("Cash register " + this.getId() + " PID:" + Thread.currentThread().getId() +
                 " is serving: " + this.getIsServing());
-        while(this.getIsServing()) {
+        while (this.getIsServing()) {
             this.serveTheCustomer();
             TimeUnit.MILLISECONDS.sleep(10);
         }
