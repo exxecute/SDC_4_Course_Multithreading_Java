@@ -7,13 +7,15 @@ import java.util.concurrent.Callable;
 
 public class Customer implements Callable<Void> {
     private final String name;
+    private final int maxEndurance;
     private CustomerState state;
     private final boolean isPreOrder;
     private int currentCashRegisterId;
 
-    public Customer(String name, boolean isPreOrder) {
+    public Customer(String name, boolean isPreOrder, int maxEndurance) {
         this.name = name;
         this.isPreOrder = isPreOrder;
+        this.maxEndurance = maxEndurance;
     }
 
     @Override
@@ -36,6 +38,10 @@ public class Customer implements Callable<Void> {
 
     public long getPID() {
         return 10; // TODO: get pid
+    }
+
+    public int getMaxEndurance() {
+        return this.maxEndurance;
     }
 
     public void switchCashRegister(int id) {

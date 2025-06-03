@@ -9,5 +9,5 @@ public abstract class CustomerState {
         this.customer = customer;
     }
 
-    public abstract void action();
+    public abstract void action() throws InterruptedException;
 }
