@@ -1,11 +1,9 @@
 package esdc.sem4.multithreading.utils;
 
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import esdc.sem4.multithreading.customer.Customer;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -26,7 +24,7 @@ public class JsonReader {
         }
     }
 
-    public static List<Customer> loadCustomersFromJson() throws Exception { // TODO: refactor name
+    public static List<Customer> loadCustomersFromJson() throws Exception {
 
         ObjectMapper mapper = new ObjectMapper();
         List<Customer> customers = new ArrayList<>();

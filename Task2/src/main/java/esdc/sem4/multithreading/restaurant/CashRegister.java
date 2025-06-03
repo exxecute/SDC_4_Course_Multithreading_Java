@@ -1,7 +1,6 @@
 package esdc.sem4.multithreading.restaurant;
 
 import esdc.sem4.multithreading.customer.Customer;
-import esdc.sem4.multithreading.customer.state.CustomerServedState;
 import esdc.sem4.multithreading.utils.JsonReader;
 
 import java.util.ArrayList;
@@ -24,7 +23,7 @@ public class CashRegister implements Callable<Void> {
     public Void call() throws Exception {
         System.out.println("Cash register " + this.getId() + " PID:" + Thread.currentThread().getId() +
                 " is serving: " + this.getIsServing());
-        while(this.getIsServing()) {
+        while (this.getIsServing()) {
             this.serveTheCustomer();
             TimeUnit.MILLISECONDS.sleep(10);
         }
@@ -58,17 +57,15 @@ public class CashRegister implements Callable<Void> {
     }
 
     public int getCustomersPlace(Customer customer) {
-        return this.customerQueue.indexOf(customer) + 1; // TODO: refactor +1
+        return this.customerQueue.indexOf(customer) + 1;
     }
 
     private void serveTheCustomer() throws InterruptedException {
-        if (this.customerQueue.size() > 0) { // TODO: refactor
+        if (!this.customerQueue.isEmpty()) {
             Customer currentCustomer = this.chooseCustomer();
             int servingTime = (int)(Math.random() * MAX_SERVING_TIME);
-            // TODO: add logger that this cash register start serving and it will take n seconds
             System.out.println("Cash register " + this.getId() + " serving " + currentCustomer.getName() + " for " + servingTime + " seconds");
             TimeUnit.SECONDS.sleep(servingTime);
-            currentCustomer.switchState(new CustomerServedState(currentCustomer));
             currentCustomer.setIsServed(true);
             System.out.println("Cash register " + this.getId() + " served " + currentCustomer.getName());
         }
@@ -76,7 +73,7 @@ public class CashRegister implements Callable<Void> {
 
     private Customer chooseCustomer() {
         for (Customer customer : this.customerQueue) {
-            if (customer.isPreOrder()) {
+            if (customer.getIsPreOrder()) {
                 this.customerQueue.remove(customer);
                 return customer;
             }
