@@ -71,4 +71,9 @@ public class Customer implements Callable<Void> {
     public void setIsServed(boolean isServed) {
         this.isServed = isServed;
     }
+
+    @Override
+    public String toString() {
+        return "Customer{name='" + name + "', isPreOrder=" + isPreOrder + ", maxEndurance=" + maxEndurance + '}';
+    }
 }
