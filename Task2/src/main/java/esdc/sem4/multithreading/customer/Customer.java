@@ -27,7 +27,11 @@ public class Customer implements Callable<Boolean> {
     public Boolean call() throws Exception {
         System.out.println("Customer " + this.getName() + " PID:" + Thread.currentThread().getId());
         while( !this.getIsServed()) {
-            state.action();
+            try {
+                state.action();
+            } catch (InterruptedException e) {
+                return false;
+            }
             TimeUnit.MILLISECONDS.sleep(10);
         }
         System.out.println("Customer " + this.getName() + " had gone");

@@ -26,7 +26,11 @@ public class CashRegister implements Callable<Boolean> {
         System.out.println("Cash register " + this.getId() + " PID:" + Thread.currentThread().getId() +
                 " is serving: " + this.getIsServing());
         while (this.getIsServing()) {
-            this.serveTheCustomer();
+            try {
+                this.serveTheCustomer();
+            } catch (InterruptedException e) {
+                return false;
+            }
             TimeUnit.MILLISECONDS.sleep(10);
         }
         System.out.println("Cash register " + this.getId() + " stop serving");
