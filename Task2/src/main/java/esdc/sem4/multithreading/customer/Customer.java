@@ -7,7 +7,7 @@ import java.util.concurrent.Callable;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.ReentrantLock;
 
-public class Customer implements Callable<Void> {
+public class Customer implements Callable<Boolean> {
     private final String name;
     private final int maxEndurance;
     private final boolean isPreOrder;
@@ -24,14 +24,14 @@ public class Customer implements Callable<Void> {
     }
 
     @Override
-    public Void call() throws Exception {
+    public Boolean call() throws Exception {
         System.out.println("Customer " + this.getName() + " PID:" + Thread.currentThread().getId());
         while( !this.getIsServed()) {
             state.action();
             TimeUnit.MILLISECONDS.sleep(10);
         }
         System.out.println("Customer " + this.getName() + " had gone");
-        return null;
+        return true;
     }
 
     public void switchState(CustomerState newState) {

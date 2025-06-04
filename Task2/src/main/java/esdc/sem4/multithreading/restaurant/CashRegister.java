@@ -9,7 +9,7 @@ import java.util.concurrent.Callable;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.ReentrantLock;
 
-public class CashRegister implements Callable<Void> {
+public class CashRegister implements Callable<Boolean> {
     private static final int MAX_SERVING_TIME = JsonReader.getMaxServingTimeSec();
     private final int id;
     private final List<Customer> customerQueue = new ArrayList<Customer>();
@@ -22,7 +22,7 @@ public class CashRegister implements Callable<Void> {
     }
 
     @Override
-    public Void call() throws Exception {
+    public Boolean call() throws Exception {
         System.out.println("Cash register " + this.getId() + " PID:" + Thread.currentThread().getId() +
                 " is serving: " + this.getIsServing());
         while (this.getIsServing()) {
@@ -30,7 +30,7 @@ public class CashRegister implements Callable<Void> {
             TimeUnit.MILLISECONDS.sleep(10);
         }
         System.out.println("Cash register " + this.getId() + " stop serving");
-        return null;
+        return true;
     }
 
     public int getId() {
