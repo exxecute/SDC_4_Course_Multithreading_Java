@@ -3,6 +3,7 @@
  * InterruptedException.
  * Создать ситуацию, чтобы возникло исключение InterruptedException.
  * Объяснить причины его генерации.
+ * Вывод: Поток спит 10 секунд, в это время основной поток прерывает его поэтому возникает exception
  */
 package esdc.sem4.multithreading.Tasks.Task5;
 
@@ -18,7 +19,5 @@ public class Task5 implements Taskable {
         Thread thread = new Thread5("Sigma");
         thread.start();
         thread.interrupt();
-        // поток спит 10 секунд, в это время основной поток прерывает его
-        // поэтому возникает exception
     }
 }

@@ -7,6 +7,7 @@
  * talkMin.start();
  * walkMax.start();
  * ```
+ * Вывод: максимальный приоритет выполняется быстрее, чем с минимальным приоритетом.
  */
 package esdc.sem4.multithreading.Tasks.Task6;
 
