@@ -19,7 +19,7 @@ public class Main {
 
         userController(eventQueue);
 
-        eventLoop.stop();
+        eventLoopThread.interrupt();
         eventLoopThread.join();
     }
 

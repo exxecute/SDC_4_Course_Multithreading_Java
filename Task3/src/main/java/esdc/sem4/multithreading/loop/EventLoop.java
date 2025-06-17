@@ -18,21 +18,29 @@ public class EventLoop implements Runnable {
     @Override
     public void run() {
         System.out.println("Event Loop started.");
-        while (this.running) {
+        while (this.isRunning()) {
             try {
                 this.eventHandler.proccessEvent(this.eventQueue.takeEvent());
-                TimeUnit.MILLISECONDS.sleep(100);
+                TimeUnit.MILLISECONDS.sleep(1000);
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
-                System.err.println("Event Loop interrupted: " + e.getMessage());
-                this.running = false;
+                System.out.println("Event Loop interrupted: " + e.getMessage());
+                this.stop();
             }
         }
         this.eventHandler.shutdown();
         System.out.println("Event Loop stopped.");
     }
 
+    public synchronized void setRunning(boolean isRunning) {
+        this.running = isRunning;
+    }
+
+    public synchronized boolean isRunning() {
+        return this.running;
+    }
+
     public void stop() {
-        this.running = false;
+        this.setRunning(false);
     }
 }
