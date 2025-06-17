@@ -1,8 +1,11 @@
 package esdc.sem4.multithreading.events;
 
 import java.util.concurrent.TimeUnit;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
 
 public class LongRunningEvent implements Event {
+    private static final Logger logger = LogManager.getLogManager().getLogger(LongRunningEvent.class.getSimpleName());
     private final String taskName;
 
     public LongRunningEvent(String taskName) {
@@ -11,13 +14,13 @@ public class LongRunningEvent implements Event {
 
     @Override
     public void process() {
-        System.out.println("Event-thread-" + Thread.currentThread().getId() + " Starting long-running task: " + taskName);
+        logger.info("Event-thread-" + Thread.currentThread().getId() + " Starting long-running task: " + taskName);
         try {
             TimeUnit.SECONDS.sleep(2);
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
-            System.err.println("Long-running task interrupted: " + taskName);
+            logger.info("Long-running task interrupted: " + taskName);
         }
-        System.out.println("Finished long-running task: " + taskName);
+        logger.info("Finished long-running task: " + taskName);
     }
 }

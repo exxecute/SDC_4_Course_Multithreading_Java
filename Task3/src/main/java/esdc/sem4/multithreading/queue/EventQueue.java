@@ -4,17 +4,20 @@ import esdc.sem4.multithreading.events.Event;
 
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
 
 public class EventQueue {
+    private static final Logger logger = LogManager.getLogManager().getLogger(EventQueue.class.getSimpleName());
     private final BlockingQueue<Event> queue = new LinkedBlockingQueue<>();
 
     public void addEvent(Event event) {
         try {
             queue.put(event);
-            System.out.println("Event added to queue: " + event.getClass().getSimpleName());
+            logger.info("Event added to queue: " + event.getClass().getSimpleName());
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
-            System.err.println("Failed to add event to queue: " + e.getMessage());
+            logger.info("Failed to add event to queue: " + e.getMessage());
         }
     }
 
