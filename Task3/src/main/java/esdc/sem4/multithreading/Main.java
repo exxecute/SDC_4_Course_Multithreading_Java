@@ -1,12 +1,13 @@
 package esdc.sem4.multithreading;
 
 import esdc.sem4.multithreading.events.DataLoadEvent;
+import esdc.sem4.multithreading.events.Event;
 import esdc.sem4.multithreading.events.FileChangeEvent;
 import esdc.sem4.multithreading.events.LongRunningEvent;
 import esdc.sem4.multithreading.loop.EventLoop;
 import esdc.sem4.multithreading.queue.EventQueue;
 
-import java.util.concurrent.TimeUnit;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) throws InterruptedException {
@@ -16,21 +17,46 @@ public class Main {
         Thread eventLoopThread = new Thread(eventLoop, "EventLoopThread");
         eventLoopThread.start();
 
-        System.out.println("Simulating user interactions and system events");
-
-        eventQueue.addEvent(new DataLoadEvent("1 Minecraft world"));
-        eventQueue.addEvent(new FileChangeEvent("2 /home/user/project/src/code.java"));
-        eventQueue.addEvent(new LongRunningEvent("3 DIFFICULT CALCULATION FOR HUMANITY"));
-        eventQueue.addEvent(new DataLoadEvent("4 JetBrains account"));
-        eventQueue.addEvent(new FileChangeEvent("5 /app/config.xml"));
-        eventQueue.addEvent(new LongRunningEvent("6 Compiling chatGpt 2000"));
-
-        System.out.println("\nAll simulated events added. Waiting for processing to finish");
-
-        TimeUnit.SECONDS.sleep(5);
+        userController(eventQueue);
 
         eventLoop.stop();
         eventLoopThread.join();
+    }
+
+    public static void userController(EventQueue eventQueue) {
+        Scanner scanner = new Scanner(System.in);
+
+        while (true) {
+            System.out.println("Enter event:" +
+                    "\n1 - data load [Data load argument]" +
+                    "\n2 - file change event [file path]" +
+                    "\n3 - long running event [Long running data argument]" +
+                    "\n4 - exit");
+            int userCommand = scanner.nextInt();
+            if (userCommand == 4) {
+                break;
+            }
+            System.out.println("Enter arguments for event");
+            String userArgs = scanner.nextLine();
+            Event userEvent = null;
+            switch (userCommand) {
+                case 1: {
+                    userEvent = new DataLoadEvent(userArgs);
+                    break;
+                }
+                case 2: {
+                    userEvent = new FileChangeEvent(userArgs);
+                    break;
+                }
+                case 3: {
+                    userEvent = new LongRunningEvent(userArgs);
+                    break;
+                }
+            }
+            if (userEvent != null) {
+                eventQueue.addEvent(userEvent);
+            }
+        }
 
         System.out.println("Application shutting down");
     }

@@ -1,6 +1,7 @@
 package esdc.sem4.multithreading.loop;
 
 import esdc.sem4.multithreading.events.Event;
+import esdc.sem4.multithreading.events.LongRunningEvent;
 import esdc.sem4.multithreading.queue.EventQueue;
 
 import java.util.concurrent.ExecutorService;
@@ -23,8 +24,13 @@ public class EventLoop implements Runnable {
         while (running) {
             try {
                 Event event = eventQueue.takeEvent();
-                System.out.println("Processing event: " + event.getClass().getSimpleName());
-                executorService.submit(event::process);
+                if(event instanceof LongRunningEvent) {
+                    System.out.println("Processing event in other thread: " + event.getClass().getSimpleName());
+                    executorService.submit(event::process);
+                } else {
+                    System.out.println("Processing event: " + event.getClass().getSimpleName());
+                    event.process();
+                }
                 TimeUnit.MILLISECONDS.sleep(10);
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
