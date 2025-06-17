@@ -11,7 +11,7 @@ public class DataLoadEvent implements Event {
 
     @Override
     public void process() {
-        System.out.println("Loading data: " + dataToLoad);
+        System.out.println("Event-thread-" + Thread.currentThread().getId() + " Loading data: " + dataToLoad);
         try {
             TimeUnit.MILLISECONDS.sleep(100);
         } catch (InterruptedException e) {

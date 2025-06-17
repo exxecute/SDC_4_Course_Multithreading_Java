@@ -11,7 +11,7 @@ public class FileChangeEvent implements Event {
 
     @Override
     public void process() {
-        System.out.println("Processing file change for: " + filePath);
+        System.out.println("Event-thread-" + Thread.currentThread().getId() + " Processing file change for: " + filePath);
         try {
             TimeUnit.MILLISECONDS.sleep(100);
         } catch (InterruptedException e) {

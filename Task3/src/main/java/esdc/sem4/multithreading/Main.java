@@ -27,7 +27,7 @@ public class Main {
 
         System.out.println("\nAll simulated events added. Waiting for processing to finish");
 
-        TimeUnit.SECONDS.sleep(5000);
+        TimeUnit.SECONDS.sleep(5);
 
         eventLoop.stop();
         eventLoopThread.join();
